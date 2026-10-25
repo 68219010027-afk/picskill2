@@ -2,7 +2,6 @@
 const express = require('express');
 const { query } = require('./db');
 const { ok, route } = require('./helpers');
-//const { ok, route } = require('./auth'); // ชั้น 2
 const app = express();
 app.use(express.json());
 
@@ -14,8 +13,7 @@ app.get(
         ok(res, { ready: true });
     }),
 );
-// app.use('/api', require('/routes/users)); // ขั้น 2
-// app.use('/api', auth); // ขั้น 2
+app.use('/api', require('./routes/user'));
 
 // ไม่พบ API → 404
 app.use('/api', (req, res) => 
